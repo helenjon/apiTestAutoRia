@@ -1,0 +1,25 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+target/
+
+# dependencies
+
+
+# IDEs and editors
+/.idea
+.idea/
+
+
+# testresults
+screenshots/
+test-output/
+console_output_log.html
+test_log.html
+
+#Addition files
+TestCases_AutoRia.xlsx
+
+#System Files
+
+
