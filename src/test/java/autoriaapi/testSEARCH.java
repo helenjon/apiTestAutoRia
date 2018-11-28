@@ -1,7 +1,6 @@
 package autoriaapi;
 
-import com.beust.jcommander.Parameter;
-import com.sun.deploy.model.Resource;
+
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
