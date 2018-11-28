@@ -42,11 +42,12 @@
                            <include name="TU02"/>
                            <include name="TU03"/>
                            <include name="TU04"/>
-                       </methods>
-                   </class>
-               </classes>
-           </test>
+                           <!--                       <include name="TU05"/> -->
+                      </methods>
+                  </class>
+              </classes>
+          </test>
 
 
 
-   </suite>
+</suite>
