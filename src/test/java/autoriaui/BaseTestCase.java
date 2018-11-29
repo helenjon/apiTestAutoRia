@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import resourcemethods.*;
 
@@ -20,10 +19,11 @@ public class BaseTestCase {
     public AutoRiaComMainPage maipageobjects;
     SearchResultPage searchresultpage;
     baseresourceclass baseresources = new baseresourceclass();
+    SaledCarPage saledcarpage;
     public String result;
 
 
-    @BeforeSuite(alwaysRun = true)
+    @BeforeTest(alwaysRun = true)
     @Parameters({"browser", "baseUrl"})
     public void BaseTestCase(String browser, String baseUrl) {
 
@@ -75,34 +75,43 @@ public class BaseTestCase {
     }
 
 
-    @Test //Check ability to search with user defined search criteria
+    @Test (enabled = false) //Check ability to search with user defined search criteria
     public void TU04() {
         // TODO moveto List to property file
-        String [] args = {"6","39","Винница","2012", "2017", "2000", "4000"};
+        // brand 13 - Chevrolet model - 1038 - Aveo
+        String [] args = {"13","1038","Киев","1990", "2017", "2000", "40000"};
         maipageobjects.setSearchCriteria(args);
         maipageobjects.searchButton.click();
         searchresultpage = new SearchResultPage(driver);
         // TODO moveto List to property file
-        String[] assesrtsearchCriteriaList = {"Легковые", "Растаможенные", "Авто в Украине"};
+        String[] assesrtsearchCriteriaList = {"Легковые", "Audi", "100", "2012 - 2017 гг.", "Винницкая", "2000 - 4000 $", "Растаможенные", "Авто в Украине"};
         String[] searchCriteriaListFromSearchResult = searchresultpage.getsearchCriteriaList();
         int i=0;
         for (String s : searchCriteriaListFromSearchResult) {
             System.out.println(s);
-            //Assert.assertEquals(searchCriteriaListFromSearchResult[i], s);
+            Assert.assertEquals(searchCriteriaListFromSearchResult[i], s);
             i++;
         }
-
     }
 
 
-
-
-
-
-
-
-
-
+    @Test  //(enabled = false)//Check ability to open page of saled car from search list
+    public void TU05() {
+        // TODO moveto List to property file
+        // brand 13 - Chevrolet model - 1038 - Aveo
+        String [] args = {"13","1038","Киев","2000", "2018", "2000", "30000"};
+        String brand = "Chevrolet";
+        String model = "Aveo";
+        maipageobjects.setSearchCriteria(args);
+        maipageobjects.searchButton.click();
+        searchresultpage = new SearchResultPage(driver);
+        searchresultpage.listOfItemsonSearchResultPage().get(0).click();
+        saledcarpage = new SaledCarPage(driver);
+        Assert.assertEquals(brand,saledcarpage.getBrand());
+        Assert.assertEquals(model,saledcarpage.getModel());
+        Assert.assertTrue((Integer.parseInt(args[3])<= Integer.parseInt(saledcarpage.getYear()))&& (Integer.parseInt(saledcarpage.getYear()) <= Integer.parseInt(args[4])));
+        Assert.assertTrue((Integer.parseInt(args[5])<= Integer.parseInt(saledcarpage.getPriceSeller()))&& (Integer.parseInt(saledcarpage.getPriceSeller()) <= Integer.parseInt(args[6])));
+    }
 
 
 

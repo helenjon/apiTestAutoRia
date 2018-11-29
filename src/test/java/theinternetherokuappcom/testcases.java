@@ -1,44 +1,23 @@
 package theinternetherokuappcom;
 
-import com.google.common.collect.Ordering;
-import javafx.stage.Screen;
-import org.apache.commons.io.FileUtils;
+import org.testng.Assert;
+import resourcemethods.SetupTestDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.TestListenerAdapter;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
-import resourcemethods.baseresourceclass;
+import resourcemethods.*;
 
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
 import static org.testng.Reporter.log;
 
 
 public class testcases {
-
-
-    String baseURL = "https://the-internet.herokuapp.com/";
+    public SetupTestDriver setup;
     public WebDriver driver;
     public Actions builder;
     pageselements pageselements = new pageselements();
@@ -46,68 +25,31 @@ public class testcases {
     baseresourceclass baseresources = new baseresourceclass();
 
 
-   //@BeforeMethod
-    public void beforeMethod(){
-        driver = new ChromeDriver();
 
+   @BeforeMethod (alwaysRun = true)
+   @Parameters({"browser", "baseUrl"})
+    public void beforeMethod(String browser, String baseUrl){
+       setup = new SetupTestDriver(browser, baseUrl);
+       driver = setup.getDriver();
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result) {
         baseresources.afterMethod(driver, result);
-    }
-
-
-
-/*
-
-   // @Test
-    public void setup() throws MalformedURLException {
-   //     WebDriverWait wait = new WebDriverWait(driver, 10);
-        SetupTestDriver setupTestDriver = new SetupTestDriver("firefox", baseURL);
-        driver = setupTestDriver.getDriver();
-
-    }
-
-  //  @Test
-    public void ContextMenu() {
-        driver.get("https://the-internet.herokuapp.com/context_menu");
-    }
-
-
-    @Test
-    public void DragnDrop() {
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/drag_and_drop");
-        //Element which needs to drag.
-        WebElement From = driver.findElement(By.xpath("//div[@id='column-a']"));
-        //Element on which need to drop.
-        WebElement To = driver.findElement(By.id("column-b"));
-        //Using Action class for drag and drop.
-        Actions act = new Actions(driver);
-        //Dragged and dropped.
-        act.click();
-        act.dragAndDrop(From, To).perform();
-
-
-
-
-
-    }
-
-    @Test  //done
-    public void Selectdropdown() {
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/dropdown");
-        //Element which needs to drag.
-        Select dropdown = new Select(driver.findElement(By.id("dropdown")));
-        dropdown.selectByValue("1");
         driver.close();
     }
 
     @Test  //done
+    public void selectdropdown() {
+        driver.get("https://the-internet.herokuapp.com/dropdown");
+        //Element which needs to drag.
+        Select dropdown = new Select(driver.findElement(By.id("dropdown")));
+        dropdown.selectByValue("1");
+    }
+
+/*
+    @Test  //done
     public void jqueryuimenu() {
-        driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/jqueryui/menu");
         driver.findElement(By.id("ui-id-3")).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -115,35 +57,18 @@ public class testcases {
         driver.findElement(By.id("ui-id-4")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ui-id-5")));
         driver.findElement(By.id("ui-id-5")).click();
-        driver.close();
-
     }
 
     @Test //done
     public void floatingmenu() {
-        driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/floating_menu");
         driver.findElement(By.xpath("//a[@href='#news']")).click();
         String currentURL = driver.getCurrentUrl();
         String[] res = currentURL.split("#");
         Assert.assertEquals(res[1], "news");
-        driver.close();
     }
 
-
-
-    @Test
-    public void exit_intent() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://the-internet.herokuapp.com/exit_intent");
-        WebElement e = driver.findElement(By.cssSelector("h3"));
-        Actions action = new Actions(driver);
-        action.moveToElement(e).moveByOffset(600, -1).build().perform();
-        driver.findElement(By.xpath(".//*[@id='ouibounce-modal']/div[2]/div[3]/p")).click();
-
-
-    }
+/*
 
     @Test  //done
     public void forgot_password() {
@@ -193,19 +118,20 @@ public class testcases {
         driver.quit();
     }
 
-*/
+
     @DataProvider(name = "dataforlogintest")
     public Object[][] ValidDataProvider() {
         return new Object[][]{
-                { "wrong username", "SuperSecretPassword!", "Your username is invalid!" },
-                { "tomsmith", "wrong password", "Your password is invalid!" },
-                { "wrong username", "wrong password", "Your username is invalid!" },
+                { "wrong username", "SuperSecretPassword!", " Your username is invalid!" },
+                { "tomsmith", "wrong password", " Your password is invalid!" },
+                { "wrong username", "wrong password", " Your username is invalid!" },
 
         };
     }
 
     @Test (dataProvider = "dataforlogintest")  //done
     public void logintest_failed_withdataprovider (String username, final String password,  final String expectedmessage) {
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://the-internet.herokuapp.com/login");
         pageselements.getUserName(driver).sendKeys(username);
@@ -216,7 +142,7 @@ public class testcases {
         //driver.close();
     }
 
-/*
+
     @Test //done
     public void iframe() {
         driver = new ChromeDriver();
@@ -270,7 +196,7 @@ public class testcases {
         }
         driver.close();
     }
-*/
+
 
     @Test // (enabled = false) //done
     public void simple_alert() {
@@ -284,7 +210,7 @@ public class testcases {
         Assert.assertEquals(result,"You successfuly clicked an alert");
       //  driver.close();
     }
-/*
+
     @Test (enabled = false) //done
     public void confirmation_alert() {
         driver = new ChromeDriver();
@@ -420,7 +346,6 @@ public class testcases {
         driver.close();
     }
 
-*/
     @Test //done
     public void multipleWindows(){
         driver = new ChromeDriver();
@@ -440,7 +365,7 @@ public class testcases {
         driver.close();
         }
 
-/*
+
     @Test //done
     public void checkboxes(){
         driver = new ChromeDriver();
@@ -545,7 +470,7 @@ public class testcases {
         driver.close();
     }
 
-*/
+
     @Test //done
     public void basic_auth (){
         String url = "the-internet.herokuapp.com/basic_auth";
@@ -581,10 +506,33 @@ public class testcases {
     }
 
 
+    @Test
+    public void DragnDrop() {
+        driver = new ChromeDriver();
+        driver.get("https://the-internet.herokuapp.com/drag_and_drop");
+        //Element which needs to drag.
+        WebElement From = driver.findElement(By.xpath("//div[@id='column-a']"));
+        //Element on which need to drop.
+        WebElement To = driver.findElement(By.id("column-b"));
+        //Using Action class for drag and drop.
+        Actions act = new Actions(driver);
+        //Dragged and dropped.
+        act.click();
+        act.dragAndDrop(From, To).perform();
+    }
 
+        @Test
+    public void exit_intent() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("http://the-internet.herokuapp.com/exit_intent");
+        WebElement e = driver.findElement(By.cssSelector("h3"));
+        Actions action = new Actions(driver);
+        action.moveToElement(e).moveByOffset(600, -1).build().perform();
+        driver.findElement(By.xpath(".//*[@id='ouibounce-modal']/div[2]/div[3]/p")).click();
+    }
 
-
-
+    */
 
 
     }

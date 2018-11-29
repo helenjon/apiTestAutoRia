@@ -36,7 +36,7 @@ public class AutoRiaComMainPage {
     public WebElement categories;
 
     //Apply found list of brand
-    @FindBy(css = "#brandTooltipBrandAutocomplete-brand")
+    @FindBy(css = "#brandTooltipBrandAutocompleteInput-brand")
     public WebElement brand;
 
     //Apply found list of model
@@ -74,7 +74,8 @@ public class AutoRiaComMainPage {
     public void setBrand(String valuetoselect){
     // TODO moveto List to property file // 6 - AUDI
     //String valuetoselect = "6";
-    brand.click();
+    driver.findElement(By.cssSelector("#brandTooltipBrandAutocomplete-region")).click();
+    //brand.click();
     selectFromDropdownList(valuetoselect);
     }
 

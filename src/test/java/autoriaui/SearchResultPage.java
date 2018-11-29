@@ -30,7 +30,7 @@ public class SearchResultPage {
     private List<WebElement> searchCriteriaObjects;
 
 
-    @FindBys({@FindBy(css = ".item.ticket-title")})
+    @FindBys({@FindBy(css = ".item.ticket-title>a")})
     private List<WebElement> listOfItemsonSearchResultPage;
 
     public List<WebElement> listOfItemsonSearchResultPage(){
@@ -41,6 +41,7 @@ public class SearchResultPage {
     private WebElement paginationChangeSize;
 
 
+
     public String[] getsearchCriteriaList (){
         for (WebElement obj :  searchCriteriaObjects) {
             listOfSearchCriteria.add(obj.getAttribute("textContent"));
@@ -48,8 +49,13 @@ public class SearchResultPage {
         return listOfSearchCriteria.toArray(new String[listOfSearchCriteria.size()]);
     }
 
+
+
     public String getPaginationChangeSizeValue(){
         return paginationChangeSize.getAttribute("textContent").substring(0,2);
     }
+
+
+
 
 }
