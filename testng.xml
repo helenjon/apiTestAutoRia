@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-       <parameter name="browser" value="chrome"/>
-       <parameter name="baseUrl" value="https://auto.ria.com/"/>
+<suite thread-count ="1"  verbose="1"  name="All Test Suite"  parallel = "tests">
 
+             <test verbose="2" preserve-order="true" name="theinternetherokuappcom">
+                 <parameter name="browser" value="chrome"/>
+                 <parameter name="baseUrl" value="https://the-internet.herokuapp.com/"/>
+                   <classes>
+                       <class name="theinternetherokuappcom.testcases">
+                           <methods>
 
-    <!--       <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/theinternetherokuappcom">
+                               <include name="teststackquestion"/>
+                           </methods>
+                        </class>
+                        <class name="theinternetherokuappcom.testcases">
+                           <methods>
+                               <include name="selectdropdown"/>
+
+                               <include name="floatingmenu"/>
+
+                           </methods>
+                       </class>
+                   </classes>
+             </test>
+    <!--            <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
                <parameter name="browser" value="chrome"/>
                <parameter name="url" value="https://auto.ria.com/"/>
-               <classes>
-                   <class name="theinternetherokuappcom.stacktest">
-                       <methods>
-                           <include name="teststackquestion"/>
-                       </methods>
-                    </class>
-                    <class name="theinternetherokuappcom.testcases">
-                       <methods>
-                           <include name="logintest_failed_withdataprovider"/>
-                           <include name="simple_alert"/>
-                           <include name="basic_auth"/>
-                           <include name="broken_images"/>
-                       </methods>
-                   </class>
-               </classes>
-           </test>
-           <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
                <classes>
                    <class name="autoriaapi.testSEARCH">
                        <methods>
@@ -34,7 +34,9 @@
                    </class>
                </classes>
            </test>  -->
-           <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaui">
+           <test verbose="2" preserve-order="true" name="autoriaui">
+               <parameter name="browser" value="chrome"/>
+               <parameter name="baseUrl" value="https://auto.ria.com/"/>
                  <classes>
                    <class name="autoriaui.BaseTestCase">
                        <methods>
@@ -42,6 +44,7 @@
                            <include name="TU02"/>
                            <include name="TU03"/>
                            <include name="TU04"/>
+                           <include name="TU05"/>
                            <!--                       <include name="TU05"/> -->
                       </methods>
                   </class>
