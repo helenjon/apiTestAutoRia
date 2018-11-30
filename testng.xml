@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count ="1"  verbose="1"  name="All Test Suite"  parallel = "tests">
-
+<suite thread-count ="2"  verbose="1"  name="All Test Suite"  parallel = "tests">
+    <parameter name="os" value="windows"/>
+    <parameter name="node" value="http://localhost:4444"/>
              <test verbose="2" preserve-order="true" name="theinternetherokuappcom">
                  <parameter name="browser" value="chrome"/>
                  <parameter name="baseUrl" value="https://the-internet.herokuapp.com/"/>
@@ -15,14 +16,32 @@
                         <class name="theinternetherokuappcom.testcases">
                            <methods>
                                <include name="selectdropdown"/>
-
+                               <include name="jqueryuimenu"/>
                                <include name="floatingmenu"/>
-
                            </methods>
                        </class>
                    </classes>
              </test>
-    <!--            <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
+            <test verbose="2" preserve-order="true" name="theinternetherokuappcom">
+                <parameter name="browser" value="firefox"/>
+                <parameter name="baseUrl" value="https://the-internet.herokuapp.com/"/>
+                <classes>
+                    <class name="theinternetherokuappcom.testcases">
+                        <methods>
+
+                            <include name="teststackquestion"/>
+                        </methods>
+                    </class>
+                    <class name="theinternetherokuappcom.testcases">
+                        <methods>
+                            <include name="selectdropdown"/>
+                            <include name="jqueryuimenu"/>
+                            <include name="floatingmenu"/>
+                        </methods>
+                    </class>
+                </classes>
+            </test>
+               <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
                <parameter name="browser" value="chrome"/>
                <parameter name="url" value="https://auto.ria.com/"/>
                <classes>
@@ -33,7 +52,7 @@
                        </methods>
                    </class>
                </classes>
-           </test>  -->
+           </test>
            <test verbose="2" preserve-order="true" name="autoriaui">
                <parameter name="browser" value="chrome"/>
                <parameter name="baseUrl" value="https://auto.ria.com/"/>
@@ -45,12 +64,26 @@
                            <include name="TU03"/>
                            <include name="TU04"/>
                            <include name="TU05"/>
-                           <!--                       <include name="TU05"/> -->
+                           <include name="TU05"/>
                       </methods>
                   </class>
               </classes>
           </test>
-
-
+    <test verbose="2" preserve-order="true" name="autoriaui">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="baseUrl" value="https://auto.ria.com/"/>
+        <classes>
+            <class name="autoriaui.BaseTestCase">
+                <methods>
+                    <include name="TU01"/>
+                    <include name="TU02"/>
+                    <include name="TU03"/>
+                    <include name="TU04"/>
+                    <include name="TU05"/>
+                    <include name="TU05"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>
