@@ -12,6 +12,8 @@ import org.testng.annotations.*;
 import resourcemethods.*;
 
 
+import java.net.MalformedURLException;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
 import static org.testng.Reporter.log;
 
@@ -27,9 +29,9 @@ public class testcases {
 
 
    @BeforeMethod (alwaysRun = true)
-   @Parameters({"browser", "baseUrl"})
-    public void beforeMethod(String browser, String baseUrl){
-       setup = new SetupTestDriver(browser, baseUrl);
+   @Parameters({"os","browser", "baseUrl", "node"})
+    public void beforeMethod(String os,String browser, String baseUrl, String node) throws MalformedURLException {
+       setup = new SetupTestDriver(os, browser, baseUrl, node);
        driver = setup.getDriver();
     }
 
@@ -47,7 +49,7 @@ public class testcases {
         dropdown.selectByValue("1");
     }
 
-/*
+
     @Test  //done
     public void jqueryuimenu() {
         driver.get("https://the-internet.herokuapp.com/jqueryui/menu");

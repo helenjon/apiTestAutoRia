@@ -8,15 +8,14 @@ import org.testng.annotations.*;
 import resourcemethods.*;
 
 
-
-
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTestCase {
 
-    public WebDriver driver;
-    public SetupTestDriver setup;
-    public AutoRiaComMainPage maipageobjects;
+    WebDriver driver;
+    SetupTestDriver setup;
+    AutoRiaComMainPage maipageobjects;
     SearchResultPage searchresultpage;
     baseresourceclass baseresources = new baseresourceclass();
     SaledCarPage saledcarpage;
@@ -24,10 +23,10 @@ public class BaseTestCase {
 
 
     @BeforeTest(alwaysRun = true)
-    @Parameters({"browser", "baseUrl"})
-    public void BaseTestCase(String browser, String baseUrl) {
+    @Parameters({"os","browser", "baseUrl", "node"})
+    public void BaseTestCase(String os,String browser, String baseUrl, String node) throws MalformedURLException {
 
-        setup = new SetupTestDriver(browser, baseUrl);
+        setup = new SetupTestDriver(os, browser, baseUrl, node);
         driver = setup.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://auto.ria.com/");
