@@ -1,5 +1,6 @@
 package theinternetherokuappcom;
 
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import resourcemethods.SetupTestDriver;
 import org.openqa.selenium.*;
@@ -30,7 +31,7 @@ public class testcases {
 
    @BeforeMethod (alwaysRun = true)
    @Parameters({"os","browser", "baseUrl", "node"})
-    public void beforeMethod(String os,String browser, String baseUrl, String node) throws MalformedURLException {
+    public void beforeMethod(String os, String browser, String baseUrl, String node) throws MalformedURLException {
        setup = new SetupTestDriver(os, browser, baseUrl, node);
        driver = setup.getDriver();
     }
@@ -38,6 +39,13 @@ public class testcases {
     @AfterMethod
     public void afterMethod(ITestResult result) {
         baseresources.afterMethod(driver, result);
+        driver.quit();
+ //       driver.close();
+    }
+    @AfterTest
+    public void afterTest(ITestResult result) {
+        baseresources.afterMethod(driver, result);
+        driver.quit();
         driver.close();
     }
 
@@ -532,9 +540,10 @@ public class testcases {
         Actions action = new Actions(driver);
         action.moveToElement(e).moveByOffset(600, -1).build().perform();
         driver.findElement(By.xpath(".//*[@id='ouibounce-modal']/div[2]/div[3]/p")).click();
-    }
+*/
 
-    */
+
+
 
 
     }

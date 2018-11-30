@@ -114,15 +114,15 @@ public class BaseTestCase {
 
 
 
-    @AfterMethod
-    public void afterMethod(ITestResult result) {
+    @AfterMethod    public void afterMethod(ITestResult result) {
         baseresources.afterMethod(driver, result);
         driver.get(setup.getBaseUrl());
     }
 
 
-    @AfterSuite
+    @AfterTest
     public void close(){
+        driver.quit();
         driver.close();
 
     }

@@ -44,6 +44,7 @@ public class SetupTestDriver {
         } else if (browser.equalsIgnoreCase("firefox")) {
             DesiredCapabilities cap = DesiredCapabilities.firefox();
               cap.setBrowserName("firefox");
+              cap.setPlatform(platform);
             this.driver = new RemoteWebDriver(new URL(node + "/wd/hub"), cap);
         }
 

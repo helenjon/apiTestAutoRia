@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count ="2"  verbose="1"  name="All Test Suite"  parallel = "tests">
+<suite thread-count ="4"  verbose="4"  name="All Test Suite"  parallel = "tests">
     <parameter name="os" value="windows"/>
     <parameter name="node" value="http://localhost:4444"/>
-             <test verbose="2" preserve-order="true" name="theinternetherokuappcom">
+         <test verbose="2" preserve-order="true" name="theinternetherokuappcomchrome">
                  <parameter name="browser" value="chrome"/>
                  <parameter name="baseUrl" value="https://the-internet.herokuapp.com/"/>
                    <classes>
@@ -22,7 +22,7 @@
                        </class>
                    </classes>
              </test>
-            <test verbose="2" preserve-order="true" name="theinternetherokuappcom">
+            <test verbose="2" preserve-order="true" name="theinternetherokuappcomfirefox">
                 <parameter name="browser" value="firefox"/>
                 <parameter name="baseUrl" value="https://the-internet.herokuapp.com/"/>
                 <classes>
@@ -41,7 +41,7 @@
                     </class>
                 </classes>
             </test>
-               <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
+            <test verbose="2" preserve-order="true" name="C:/My doc/Idea_projects/apiTestAutoRia/src/test/java/autoriaapi">
                <parameter name="browser" value="chrome"/>
                <parameter name="url" value="https://auto.ria.com/"/>
                <classes>
@@ -53,7 +53,7 @@
                    </class>
                </classes>
            </test>
-           <test verbose="2" preserve-order="true" name="autoriaui">
+           <test verbose="2" preserve-order="true" name="autoriauichrome">
                <parameter name="browser" value="chrome"/>
                <parameter name="baseUrl" value="https://auto.ria.com/"/>
                  <classes>
@@ -69,7 +69,7 @@
                   </class>
               </classes>
           </test>
-    <test verbose="2" preserve-order="true" name="autoriaui">
+    <test verbose="2" preserve-order="true" name="autoriauifirefox">
         <parameter name="browser" value="firefox"/>
         <parameter name="baseUrl" value="https://auto.ria.com/"/>
         <classes>
