@@ -24,6 +24,8 @@ public class baseResources {
     String searchrequest;
     String line;
 
+//    https://developers.ria.com/auto/search?api_key=xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ&category=1&marka_id[0]=4&model_id[0]=31
+
 
 
     public void getrequstparamsfromfile(String filewithdata){
@@ -40,7 +42,7 @@ public class baseResources {
                 model = nextRecord[2];
                 year_from = nextRecord[3];
             }
-            System.out.print(this.category+" "+this.mark+" "+this.model+" "+this.year_from);
+            //System.out.print(this.category+" "+this.mark+" "+this.model+" "+this.year_from);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +53,7 @@ public class baseResources {
 
     public String getsearchrequest() {
         searchrequest = baseUrl+"search?"+"api_key=" + api_key + "&category.main.id=" + category + "&marka_id[0]=" + mark + "&model_id[0]=" + model+"&s_yers[0]="+year_from; //  + "&year[0].gte="+ year_from + "year[0].lte=" + year_to
-        System.out.println(searchrequest);
+        //System.out.println(searchrequest);
         return searchrequest.toString() ;  }
 
     public String getAutoDataIDrequert(String id_auto) {
@@ -78,13 +80,10 @@ public class baseResources {
 
     // get responce data from stream
     public String getResponceData(String searchrequest) throws IOException {
-        //URL objurl = new URL(requestUrl);
         URL objurl = new URL(searchrequest);
         URLConnection urlCon = objurl.openConnection();
         InputStream inputStream = urlCon.getInputStream();
-       // System.out.println("inputStream:" + inputStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-       // System.out.println("BufferedReader reader" + reader);
         this.line = reader.readLine();
         // close stream connection
         reader.close();
@@ -94,7 +93,6 @@ public class baseResources {
 //object to parse responce data
     public JSONObject getJsonObject(String responcedata){
         JSONObject myResponse = new JSONObject(responcedata);
-       // System.out.println("line" + this.line);
         return myResponse;
     }
 

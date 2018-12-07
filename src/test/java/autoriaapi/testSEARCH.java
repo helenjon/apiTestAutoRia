@@ -2,7 +2,6 @@ package autoriaapi;
 
 
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
@@ -26,16 +25,16 @@ public class testSEARCH {
     @BeforeTest
     public void gettestparams() {
         tests.resources.getrequstparamsfromfile("src/test/resources/test_data.csv");
-        Reporter.log("MYTEST");
+        Reporter.log("MYTEST Beforetest");
     }
 
     @AfterTest
     public void  afterMethod(){
-       System.out.println(Reporter.getCurrentTestResult().getStatus());
+        System.out.println(Reporter.getCurrentTestResult().getStatus());
         System.out.println(Reporter.getCurrentTestResult().getName());
         System.out.println(Reporter.getCurrentTestResult().isSuccess());
         System.out.println(Reporter.getCurrentTestResult().getHost());
-        Reporter.log("MMMMMM");
+        Reporter.log("My test afterMethod");
 
     }
 
