@@ -1,4 +1,4 @@
-package autoRiaApiByRestAssured;
+package autoriaapibyrestassured;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -7,64 +7,54 @@ import static io.restassured.RestAssured.given;
 
 public class HelperMethods {
 
-    public String api_key;
-    public String baseUrl;
+    public static String API_KEY ;
+    public static String BASE_URL;
     private JsonPath jpOfSearchResult;
 
 
     public HelperMethods() {
-        this.api_key = "xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ";
-        this.baseUrl = "https://developers.ria.com";
-        RestAssured.baseURI = this.baseUrl;
-
-
-
+        this.API_KEY = "xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ";
+        this.BASE_URL = "https://developers.ria.com";
+        RestAssured.baseURI = this.BASE_URL;
     }
 
-    public String getApiKey() {
-        return this.api_key;
 
-    }
-
-    public String getBaseUrl() {
-        return this.baseUrl;
-
-    }
 
 // get search results for search with criteria
     public JsonPath runSearchWithCriteria(String[] args) {
-        String searchresults = given()
+        String searchResults = given()
                 .param(args[0], args[1])
                 .param(args[2], args[3])
                 .param(args[4], args[5])
-                .param("api_key", this.api_key)
+                .param("api_key", this.API_KEY)
                 .when().get("auto/search").asString();
             // System.out.println(jsonSearchwithCriteria);
-        jpOfSearchResult = new JsonPath(searchresults);
+        jpOfSearchResult = new JsonPath(searchResults);
         return jpOfSearchResult;
     }
 
+//get search results with default criteria
     public String runSearchWithNoCriteria() {
-        String jsonSearchwithCriteria = given()
-                .param("api_key", this.api_key)
+        String searchWithNoCriteria = given()
+                .param("api_key", this.API_KEY)
                 .when().get("auto/search").asString();
-        return jsonSearchwithCriteria;
+        return searchWithNoCriteria;
 
     }
 
 
-    public JsonPath fromStringToJson(String json) {
+    public JsonPath convertFromStringToJson(String json) {
         JsonPath jp = new JsonPath(json);
         return jp;
     }
 
 
-    public String autoidfined(String auto_id) {
-        String jsonauto_idSearch = given()
+    public String getAutoDataById(String auto_id) {
+        String autoData = given()
                 .param("auto_id", auto_id)
-                .param("api_key", this.api_key)
+                .param("api_key", this.API_KEY)
                 .when().get("auto/info").asString();
-        return jsonauto_idSearch;
+        return autoData;
 
     }
 

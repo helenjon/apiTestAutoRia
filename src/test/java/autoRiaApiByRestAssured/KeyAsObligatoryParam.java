@@ -1,4 +1,4 @@
-package autoRiaApiByRestAssured;
+package autoriaapibyrestassured;
 
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeMethod;
@@ -6,22 +6,20 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class apisearh_keycheck {
+public class KeyAsObligatoryParam {
 
-    public String api_key;
-    public HelperMethods setupdata;
+    public HelperMethods setupData;
 
     @BeforeMethod
-public void setupApi(){
-    setupdata = new HelperMethods();
-    RestAssured.baseURI = setupdata.getBaseUrl();
-    api_key = setupdata.getApiKey();
-    }
+    public void setup(){
+        setupData = new HelperMethods();
+        RestAssured.baseURI = HelperMethods.BASE_URL;
+        }
 
     @Test
     public void checkResponceKeyAvailable() {
     given()
-        .param("api_key", api_key)
+        .param("api_key", HelperMethods.API_KEY)
     .when().get("auto/search")
     .then().assertThat().statusCode(200);
 }
@@ -46,7 +44,7 @@ public void setupApi(){
     public void checkResponceKeyAvailableWrongParamOrder() {
         given()
                 .param("category", "1")
-                .param("api_key", api_key)
+                .param("api_key", HelperMethods.API_KEY)
                 .when().get("auto/search")
                 .then().assertThat().statusCode(200);
     }
