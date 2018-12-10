@@ -13,7 +13,7 @@ public class KeyAsObligatoryParam {
     @BeforeMethod
     public void setup(){
         setupData = new HelperMethods();
-        RestAssured.baseURI = setupData.getBaseUrl();
+        RestAssured.baseURI = HelperMethods.BASE_URL;
         }
 
     @Test
