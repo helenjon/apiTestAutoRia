@@ -13,10 +13,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URLConnection;
 
-public class testSEARCH {
+public class TestSearch {
 
-    public baseResources resources = new baseResources();
-    public testsearchmiddle tests = new testsearchmiddle();
+    public BaseResources resources = new BaseResources();
+    public TestSearchMiddle tests = new TestSearchMiddle();
 
     JSONObject myResponse;
     URLConnection myConnection;
@@ -101,16 +101,6 @@ public class testSEARCH {
         }
     }
 
-
-    /*
-@Test
-  public void testcase4() throws IOException {
-        String searchrequest = resources.getsearchrequest();
-        String responcedata = resources.getResponceData(searchrequest);
-        //myResponse = resources.getJsonObject(responcedata);
-        myResponse = resources.getJsonObject(resources.getResponceData(resources.getsearchrequest()));
-        System.out.println("ids test 3" + myResponse.getJSONObject("result").getJSONObject("search_result").getJSONArray("ids"));
-    }  */
 
 }
 

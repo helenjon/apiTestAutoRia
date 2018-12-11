@@ -9,23 +9,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class baseResources {
+public class BaseResources {
 
 
-    //
+
     String baseUrl = "https://developers.ria.com/auto/";
     String api_key = "xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ";
-    // search parameters
+    // search parameters from test_data.csv
     String category ;//= "1";
     String mark ;//= "4";  //Asia
     String model; //= "31"; // Rosta
     String year_from; // = "1991"; //Year from
-    //String year_to = "1991";
     String searchrequest;
     String line;
-
-//    https://developers.ria.com/auto/search?api_key=xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ&category=1&marka_id[0]=4&model_id[0]=31
-
 
 
     public void getrequstparamsfromfile(String filewithdata){
@@ -42,7 +38,6 @@ public class baseResources {
                 model = nextRecord[2];
                 year_from = nextRecord[3];
             }
-            //System.out.print(this.category+" "+this.mark+" "+this.model+" "+this.year_from);
         }
         catch (Exception e) {
             e.printStackTrace();

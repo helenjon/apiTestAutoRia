@@ -1,9 +1,7 @@
 package autoriaui;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -35,7 +33,7 @@ public class BaseTestCase {
         driver.get("https://auto.ria.com/");
     // This part doen't work - thinking how to fix.
      /*   try {
-            wait.until(baseResources.waitForLoad(driver));
+            wait.until(BaseResources.waitForLoad(driver));
         }
         catch (Throwable error) {
             Assert.fail("Timeout waiting for Page Load Request to complete.");

@@ -6,24 +6,21 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URLConnection;
 
-public class testsearchmiddle {
+public class TestSearchMiddle {
 
 
     JSONObject myResponse;
-    URLConnection myConnection;
     HttpURLConnection myHTMLdata;
-    baseResources resources;
+    BaseResources resources;
 
-    public testsearchmiddle() {
-        resources = new baseResources();
+    public TestSearchMiddle() {
+        resources = new BaseResources();
     }
 
 
     public  JSONArray getdatafromJson() throws IOException {
         myResponse = resources.getJsonObject(resources.getResponceData(resources.getsearchrequest()));
-       // System.out.println("ids test 3" + myResponse.getJSONObject("result").getJSONObject("search_result").getJSONArray("ids"));
         return myResponse.getJSONObject("result").getJSONObject("search_result").getJSONArray("ids");
 
     }
