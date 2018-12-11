@@ -5,7 +5,7 @@
       <parameter name="node" value="http://localhost:4444"/>
 
                      <test verbose="2" preserve-order="true" name="autoriaapi">
-                          <classes> <class name="autoriaapi.testSEARCH"></class></classes>
+                          <classes> <class name="autoriaapi.TestSearch"></class></classes>
                      </test>
 
                      <test verbose="2" preserve-order="true" name="autoRiaApiByRestAssured">
