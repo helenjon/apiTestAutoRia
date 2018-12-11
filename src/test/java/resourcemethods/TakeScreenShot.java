@@ -12,7 +12,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class takescreenshot {
+public class TakeScreenShot {
 
     public static String DestFileFailure;
     public static String DestFileSuccess;

@@ -18,7 +18,7 @@ public class SaledCarPage {
     @FindBy(xpath = "//span[@itemprop = 'name']")
     private WebElement modelsaledcar;
 
-    @FindBy(css = ".price-seller>.price")
+    @FindBy(css = ".price_value>strong")
     private WebElement priceseller;
 
     @FindBy(css = ".heading > .head")
@@ -44,6 +44,7 @@ public class SaledCarPage {
 
     public String getPriceSeller(){
         String pureprise = priceseller.getAttribute("textContent");
+            System.out.println(pureprise);
         return pureprise.replaceAll("\\s","").substring(0,pureprise.length()-3);
     }
 
