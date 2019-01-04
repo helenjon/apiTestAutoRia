@@ -1,5 +1,6 @@
 package autoriaapibyrestassured;
 
+import dataprovider.ConfigFileReader;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
@@ -12,10 +13,12 @@ import static io.restassured.RestAssured.given;
 
 public class ApiSearchAutoId {
     public HelperMethods setupData;
+    private ConfigFileReader configFileReader;
 
     @BeforeMethod
     public void setup() {
         setupData = new HelperMethods();
+        configFileReader = new ConfigFileReader();
         RestAssured.baseURI = HelperMethods.BASE_URL;
     }
 
@@ -34,7 +37,7 @@ public class ApiSearchAutoId {
 // check api search results complies to search criteria
     @Test
     public void checkSearchResults() {
-        String [] args = {"category_id", "1","marka_id[0]", "79", "", ""};
+        String [] args = {"category_id", configFileReader.getCheckSearchCriteriaCategoryId(),"marka_id[0]", configFileReader.getCheckSearchCriteriaMarkaId(), "", ""};
         String [] argsToCheck = {"autoData.categoryId", "markId"};
         // run search with some criteria and get result as JSON
         JsonPath json = setupData.runSearchWithCriteria(args);

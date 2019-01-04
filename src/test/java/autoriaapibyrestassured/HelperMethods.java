@@ -1,5 +1,6 @@
 package autoriaapibyrestassured;
 
+import dataprovider.ConfigFileReader;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 
@@ -10,12 +11,17 @@ public class HelperMethods {
     public static String API_KEY ;
     public static String BASE_URL;
     private JsonPath jpOfSearchResult;
+    private ConfigFileReader configFileReader;
 
 
     public HelperMethods() {
-        this.API_KEY = "xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ";
-        this.BASE_URL = "https://developers.ria.com";
+        configFileReader = new ConfigFileReader();
+        this.API_KEY = configFileReader.getApiKey();
+        this.BASE_URL = configFileReader.getBaseUrl();
+        //this.API_KEY = "xmu8sNMjwhO29eIrRpTQMOG5KbFg6domccVFwzIZ";
+        //this.BASE_URL = "https://developers.ria.com";
         RestAssured.baseURI = this.BASE_URL;
+
     }
 
 
